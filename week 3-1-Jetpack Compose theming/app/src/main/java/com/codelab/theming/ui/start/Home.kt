@@ -48,9 +48,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.codelab.theming.R
 import com.codelab.theming.data.Post
 import com.codelab.theming.data.PostRepo
@@ -161,6 +165,9 @@ private fun PostMetadata(
 ) {
     val divider = "  •  "
     val tagDivider = "  "
+    val tagStyle = MaterialTheme.typography.overline.toSpanStyle().copy(
+        background = MaterialTheme.colors.primary.copy(alpha = 0.1f)
+    )
     val text = buildAnnotatedString {
         append(post.metadata.date)
         append(divider)
@@ -171,8 +178,12 @@ private fun PostMetadata(
                 append(tagDivider)
             }
             append(" ${tag.uppercase(Locale.getDefault())} ")
+            withStyle(tagStyle) {
+                append("${tag.toUpperCase()}")
+            }
         }
     }
+
     Text(
         text = text,
         modifier = modifier
