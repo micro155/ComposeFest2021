@@ -236,14 +236,14 @@ fun TodoInputText(
 fun TodoEditButton(
     onClick: () -> Unit,
     text: String,
-    modifier: Modifier = Modifier,
+//    modifier: Modifier = Modifier,
     enabled: Boolean = true
 ) {
     TextButton(
         onClick = onClick,
         shape = CircleShape,
         enabled = enabled,
-        modifier = modifier
+//        modifier = modifier
     ) {
         Text(text)
     }
